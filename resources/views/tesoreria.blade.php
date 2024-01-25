@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('content')
-    <div class="container-fluid mt-4">
+    <div class="container-fluid mt-0">
         <h1 style="color: #1285AD;">Tesorería</h1>
 
         <form action="{{ url('/tesoreria') }}" method="get" class="mb-4">
@@ -11,27 +11,46 @@
                     <label for="start_date" style="color: #1285AD;">Fecha:</label>
                     <input type="date" name="start_date" class="form-control" value="{{ request('start_date') }}">
                 </div>
+        
                 <div class="col-md-3 mb-3">
                     <label for="user_id" style="color: #1285AD;">Conductor:</label>
                     <select name="user_id" class="form-control">
                         <option value="" {{ !request('user_id') ? 'selected' : '' }}>Todos</option>
                         @foreach($users as $user)
-                            <option value="{{ $user->id }}" {{ request('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                            <option value="{{ $user->id }}" {{ request('user_id') == $user->id ? 'selected' : '' }}>
+                                {{ $user->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
+        
+                <div class="col-md-3 mb-3">
+                    <label for="estado">Estado:</label>
+                    <select class="form-control" name="estado">
+                        <option value=""{{ empty(request('estado')) ? ' selected' : '' }}>Todos</option>
+                        <option value="pendiente"{{ request('estado') == 'pendiente' ? ' selected' : '' }}>
+                            Pendiente
+                        </option>
+                        <option value="entregado"{{ request('estado') == 'entregado' ? ' selected' : '' }}>
+                            Entregado
+                        </option>
+                    </select>
+                </div>
+        
                 <div class="col-md-3 mb-3">
                     <label for="search" style="color: #1285AD;">Buscar:</label>
                     <div class="input-group">
                         <input type="text" name="search" class="form-control" placeholder="Buscar..." value="{{ request('search') }}">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary" style="background-color: #1197D4; border-color: #1197D4;">Buscar</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #1197D4; border-color: #1197D4;">
+                                Buscar
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-
+        
         @if(count($datos) === 0)
             <div class="alert alert-info">
                 No se encontraron registros.
@@ -86,6 +105,7 @@
                 </tbody>
             </table>
         </div>
+        {{ $datos->links() }} 
 
         @if(session('success'))
             <div class="alert alert-success mt-3">
@@ -108,5 +128,36 @@
 
             selectElement.form.submit();
         }
+        function submitSearchForm() {
+        var formData = new FormData(document.getElementById('searchForm'));
+
+        // Realizar una solicitud AJAX para buscar/filtrar
+        $.ajax({
+            url: '{{ url("/tesoreria") }}',
+            method: 'GET',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Actualizar la parte de la página que contiene los resultados de la búsqueda
+                $('#content-container').html(response);
+
+                // Guardar el estado del sidebar en una cookie o en el almacenamiento local
+                var sidebarState = $('#sidebar').hasClass('collapsed') ? 'collapsed' : 'expanded';
+                localStorage.setItem('sidebarState', sidebarState);
+            },
+            error: function(error) {
+                console.error('Error en la solicitud AJAX', error);
+            }
+        });
+    }
+
+    // Restaurar el estado del sidebar al cargar la página
+    $(document).ready(function() {
+        var sidebarState = localStorage.getItem('sidebarState');
+        if (sidebarState === 'collapsed') {
+            $('#sidebar').addClass('collapsed');
+        }
+    });
     </script>
 @endsection

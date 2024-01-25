@@ -74,6 +74,7 @@ class ConductoresController extends Controller
             ->get();
         
          $totalValor = $informes->sum('total');
+         
 
     
             return view('conductores', compact('clientes', 'user', 'informes', 'totalValor'));

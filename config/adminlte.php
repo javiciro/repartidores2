@@ -14,60 +14,58 @@ return [
     |
     */
 
-    'title' => 'Papeleria Universal',
-    'title_prefix' => '',
-    'title_postfix' => '',
+'title' => 'Papeleria Universal',
+'title_prefix' => '',
+'title_postfix' => '',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Favicon
-    |--------------------------------------------------------------------------
-    |
-    | Here you can activate the favicon.
-    |
-    | For detailed instructions you can look the favicon section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
-    |
-    */
+/*
+|--------------------------------------------------------------------------
+| Favicon
+|--------------------------------------------------------------------------
+|
+| Activate the favicon.
+|
+| For detailed instructions, refer to the favicon section here:
+| https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
+|
+*/
+'use_ico_only' => false,
+'use_full_favicon' => true,
 
-    'use_ico_only' => false,
-    'use_full_favicon' => false,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Google Fonts
-    |--------------------------------------------------------------------------
-    |
-    | Here you can allow or not the use of external google fonts. Disabling the
-    | google fonts may be useful if your admin panel internet access is
-    | restricted somehow.
-    |
-    | For detailed instructions you can look the google fonts section here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
-    |
-    */
-
-    'google_fonts' => [
-        'allowed' => true,
-    ],
+/*
+|--------------------------------------------------------------------------
+| Google Fonts
+|--------------------------------------------------------------------------
+|
+| Allow or disallow the use of external Google fonts.
+| Disabling may be useful if your admin panel has restricted internet access.
+|
+| For detailed instructions, refer to the Google Fonts section here:
+| https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
+|
+*/
+'google_fonts' => [
+    'allowed' => true,
+],
 
 /*
 |--------------------------------------------------------------------------
 | Admin Panel Logo
 |--------------------------------------------------------------------------
 |
-| Customize the logo of your admin panel.
+| Customize the admin panel logo.
 | For detailed instructions, check the logo section:
 | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
 |
 */
-'logo' => '<a href="#" onclick="window.location.reload();"><b>Papeleria </b>Universal</a>',
+//'logo' => '<a href="#" onclick="window.location.reload();"><a>Papeleria</a>',
 'logo_img' => 'vendor/adminlte/dist/img/logo1.png',
-'logo_img_class' => 'brand-image img elevation-8',
-'logo_img_xl' => 'vendor/adminlte/dist/img/logo1.png',
-'logo_img_xl_class' => 'brand-image-xs',
+'logo_img_class' => 'brand-image img-circle elevation-3 border-0',
+'logo_img_xl_class' => 'brand-image-xl',
+'logo_img_style' => 'width: auto; max-width: 100%; height: auto;',
+'brand_link_class' => 'brand-link border-bottom-2',
 'logo_img_alt' => 'Admin Logo',
-'logo_img_href' => '#', // Set a dummy link, it will be overridden by the onclick attribute
+'logo_img_href' => '#', // Set a dummy link; it will be overridden by the onclick attribute
 
 /*
 |--------------------------------------------------------------------------
@@ -86,8 +84,8 @@ return [
         'path' => 'vendor/adminlte/dist/img/log.png',
         'alt' => 'Auth Logo',
         'class' => '',
-        'width' => 70,
-        'height' => 50,
+        'width' => 100,
+        'height' => 100,
     ],
 ],
 
@@ -345,7 +343,7 @@ return [
             'can' =>  'tesorero',
         ],
         [
-            'text' => 'plac',
+            'text' => 'Placa',
             'url'  => '/agregarPlaca',
             'icon' => 'fa fas fa-ticket-alt',
             'can' =>  'CONDUCTORES',

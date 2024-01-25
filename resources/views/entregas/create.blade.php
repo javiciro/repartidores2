@@ -112,6 +112,7 @@
     function validarFormulario() {
         var clienteNombre = document.getElementsByName('cliente_nombre')[0].value;
         var valor = document.getElementsByName('valor')[0].value;
+        var cc = document.getElementsByName('cc')[0].value;
         var correoCliente = document.getElementsByName('correo_cliente')[0].value;
         var telefonoCliente = document.getElementsByName('telefono_cliente')[0].value;
 
@@ -124,6 +125,11 @@
         // Validar que el valor sea numérico antes de enviar el formulario
         if (isNaN(parseFloat(valor))) {
             alert('El campo "Valor" debe ser un número.');
+            return false;
+        }
+
+        if (isNaN(parseFloat(cc))) {
+            alert('El campo "Documento o Cédula" debe ser un número.');
             return false;
         }
 

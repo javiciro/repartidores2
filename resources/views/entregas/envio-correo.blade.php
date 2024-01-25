@@ -98,7 +98,7 @@
 <body>
     <div class="container mt-5">
         <div class="bg-lightblue">
-            <h1 class="text-custom-orange">RESIVO PROVISIONAL UNIVERSAL</h1>
+            <h1 class="text-custom-orange">RECIBO PROVISIONAL UNIVERSAL</h1>
         </div>
 
         <div class="invoice-info">
@@ -108,7 +108,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <h5>DETALLE DEL RESIVO:</h5>
+                    <h5>DETALLE DEL RECIBO:</h5>
                     <p>Cliente o Empresa: {{ $cliente->cliente_nombre }}</p>
                     <p>Teléfono: {{ $cliente->telefono_cliente }}</p>
                     <p>Correo: {{ $cliente->correo_cliente }}</p>
@@ -123,7 +123,7 @@
                 <h5>Papelería Universal:</h5>
                 <p>Número de Teléfono: 889 11 90</p>
                 <p>Dirección: Cra 9 11-04</p>
-                <p>Punto de Venta: Centro A</p>
+                <p>Punto de Venta: Centro </p>
             </div>
         </div>
 

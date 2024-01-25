@@ -19,11 +19,18 @@ class TesoreriaController extends Controller
         if ($request->filled('start_date')) {
             // Include records up to the end of the day
             $datos->where('created_at', '>=', $request->input('start_date') . ' 00:00:00')
-                  ->where('created_at', '<=', $request->input('start_date') . ' 23:59:59');
+                ->where('created_at', '<=', $request->input('start_date') . ' 23:59:59');
         }
     
         if ($request->filled('user_id')) {
             $datos->where('user_id', $request->input('user_id'));
+        }
+    
+        if ($request->filled('estado')) {
+            // Si el estado es diferente de "Todos", aplicar filtro
+            if ($request->input('estado') !== 'todos') {
+                $datos->where('estado', $request->input('estado'));
+            }
         }
     
         if ($request->filled('search')) {
@@ -31,7 +38,8 @@ class TesoreriaController extends Controller
             $datos->where(function ($query) use ($search) {
                 $query->where('cliente_nombre', 'like', "%$search%")
                     ->orWhere('observacion', 'like', "%$search%")
-                    ->orWhere('numero_factura', 'like', "%$search%");
+                    ->orWhere('numero_factura', 'like', "%$search%")
+                    ->orWhere('estado', 'like', "%$search%");
             });
         }
     
@@ -41,8 +49,8 @@ class TesoreriaController extends Controller
         // Sum of Values
         $sumaValores = $datos->sum('valor');
     
-        // Get all data after applying filters
-        $datos = $datos->get();
+        // Get paginated data after applying filters
+        $datos = $datos->paginate(7);
     
         // Pass the $users variable to the view
         return view('tesoreria', compact('datos', 'sumaValores', 'users'));

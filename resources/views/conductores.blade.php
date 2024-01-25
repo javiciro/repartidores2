@@ -132,10 +132,10 @@
                         <th>Estado</th>
                         <th>Nombre del Cliente</th>
                         <th>CC cliente</th>
-                        <th>Orden Pro</th>
+                        <th>Número de Factura</th>
                         <th>Observación</th>
                         <th>Valor</th>
-                        <th>Número de Factura</th>
+                        <th>Orden Provisional</th>
                         <th>Correo del Cliente</th>
                         <th>Dirección del Cliente</th>
                         <th>Teléfono del Cliente</th>
