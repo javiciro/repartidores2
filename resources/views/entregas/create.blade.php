@@ -79,7 +79,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="num_factura">Numero De Recibo Provisionall:</label>
+                            <label for="num_factura">Numero De recibo provisional:</label>
                             <input type="text" name="num_factura" class="form-control" value="{{ $numFactura }}" readonly>
                         </div>
 
@@ -144,6 +144,19 @@
         // Evita la recarga del formulario al cambiar el conductor
         event.preventDefault();
     }
+    function formatNumber(input) {
+            // Remove non-numeric characters
+            let numericValue = input.value.replace(/\D/g, '');
+
+            // Check if the result is a valid number
+            if (!isNaN(numericValue)) {
+                // Format the number with commas for thousands
+                input.value = Number(numericValue).toLocaleString('es-CO');
+            } else {
+                // Handle the case where the input is not a valid number (e.g., contains non-numeric characters)
+                input.value = '';
+            }
+        }
 </script>
 
 @endsection
