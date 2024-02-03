@@ -30,7 +30,7 @@ use Spatie\Permission\Traits\HasRoles;
     public function edit(Role $role)
     {
         $permisos = Permission::all();
-        return view('roles_permisos.rolPermiso', compact('role', 'permisos'));
+        return view('roles_permisos.editarRol', compact('role', 'permisos'));
     }
 
     public function update(Request $request, Role $role)

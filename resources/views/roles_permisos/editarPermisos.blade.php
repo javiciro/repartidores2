@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('title', 'ss')
+
 @section('content')
 <style>
     .card-header h3 {

@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('title', 'Placas')
+
 @section('content')
     <div class="container">
         <div class="row">

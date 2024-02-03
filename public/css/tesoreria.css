@@ -1,0 +1,779 @@
+
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f2f2f2; 
+       
+    }
+
+    .main-container {
+        margin: 20px;
+    }
+
+    .main-card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+    }
+
+    .main-card-header {
+        background-color: rgb(255, 208, 0);
+        color: #ffffff;
+        padding: 15px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .main-title {
+        font-size: 28px;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .btn-crear {
+        /* Estilos actuales del botón */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px 20px;
+        gap: 8px;
+        height: 60px;
+        width: 200px;
+        border: none;
+        background: #fabc0b;
+        color: #ffffff;
+        border-radius: 50px;
+        cursor: pointer;
+        position: relative;
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-crear .span {
+        /* Estilos del icono dentro del botón */
+        border-radius: 50%;
+        background-color: #ffffff;
+        padding: 10px;
+        position: absolute;
+        left: 0;
+    }
+
+    .lable {
+        /* Estilos del texto del botón */
+        line-height: 22px;
+        font-size: 17px;
+        color: #ffffff;
+        margin-left: 20px;
+        font-family: sans-serif;
+        letter-spacing: 1px;
+    }
+
+    .btn-crear:hover {
+        /* Estilos en hover del botón */
+        background: #1285ad;
+        color: #ffffff;
+    }
+
+    .btn-crear:hover .svg-icon {
+        /* Estilos del icono en hover del botón */
+        animation: slope 0.8s linear infinite;
+    }
+
+    @keyframes slope {
+        0% {}
+        50% {
+            transform: rotate(15deg);
+        }
+        100% {}
+    }
+
+    .filter-form {
+        margin-top: 20px;
+        background-color: #ffffff;
+        padding: 15px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-field {
+        margin-bottom: 15px;
+    }
+
+    .filter-label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .filter-input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+    .table-container {
+        margin-top: 20px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        overflow: auto;
+        /* Cambiado a 'auto' para permitir desplazamiento horizontal en pantallas pequeñas */
+    }
+
+    .table-header {
+        background-color: #1197D4;
+        color: #ffffff;
+        font-weight: bold;
+    }
+
+    .table-row {
+        transition: background-color 0.3s ease;
+    }
+
+    .table-row:hover {
+        background-color: #f5f5f5;
+    }
+
+    /* Nuevas reglas de estilo para ajustar el ancho de la columna "Estado" */
+    .table-container th:first-child,
+    .table-container td:first-child {
+        width: 15%;
+        /* Puedes ajustar el porcentaje según tus necesidades */
+    }
+
+    @media (max-width: 600px) {
+        /* Aplicar estilos específicos para pantallas pequeñas aquí */
+        .table-container {
+            overflow-x: auto;
+            /* Agregado para permitir el desplazamiento horizontal en pantallas pequeñas */
+        }
+
+        /* Puedes ocultar ciertas columnas, cambiar el tamaño de fuente, etc. para mejorar la legibilidad en pantallas pequeñas */
+        .table-container th:first-child,
+        .table-container td:first-child {
+            width: auto;
+            /* Para pantallas pequeñas, deja que el ancho sea automático */
+        }
+    }
+
+    .pagination {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .btn-crear-cliente {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+    }
+
+    .borrar_limpiar {
+        display: flex;
+        align-items: center;
+    }
+
+    .borrar_limpiar .btn {
+        margin-right: 10px;
+        background-color: #e5e1e1;
+    }
+
+    .borrar_limpiar .btn:link,
+    .borrar_limpiar .btn:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #1285AD;
+        /* Azul claro 2 para el color del texto */
+        padding: 10px 25px;
+        background-color: rgba(169, 169, 169, 0.5);
+        /* Gris opaco */
+        border: 2px solid rgba(19, 96, 131, 0.7);
+        /* Azul opaco para el borde */
+        border-radius: 12px;
+        display: inline-block;
+        transition: all .2s;
+        position: relative;
+    }
+
+    .borrar_limpiar .btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(2, 47, 150, 0.5);
+    }
+
+    .borrar_limpiar .btn:active {
+        transform: translateY(-3px);
+    }
+
+    .borrar_limpiar .btn::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 12px;
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: -1;
+        transition: all .3s;
+    }
+
+    .borrar_limpiar .btn:hover::after {
+        background-color: rgba(19, 96, 131, 0.7);
+        /* Azul opaco */
+        transform: scaleX(1.4) scaleY(1.5);
+        opacity: 0;
+    }
+
+    .input {
+        max-width: 190px;
+        height: 44px;
+        background-color: #05060f0a;
+        border-radius: .5rem;
+        padding: 0 1rem;
+        border: 2px solid transparent;
+        font-size: 1rem;
+        transition: border-color .3s cubic-bezier(.25,.01,.25,1) 0s, color .3s cubic-bezier(.25,.01,.25,1) 0s,background .2s cubic-bezier(.25,.01,.25,1) 0s;
+    }
+
+    .label {
+        display: block;
+        margin-bottom: .3rem;
+        font-size: .9rem;
+        font-weight: bold;
+        color: #05060f99;
+        transition: color .3s cubic-bezier(.25,.01,.25,1) 0s;
+    }
+
+    .input:hover, .input:focus, .input-group:hover .input {
+        outline: none;
+        border-color: #05060f;
+    }
+
+    .input-group:hover .label, .input:focus {
+        color: #05060fc2;
+    }
+
+    .notification {
+        display: inline-block;
+        position: relative;
+        background-color: 1%;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: auto;
+    }
+
+    .notiglow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 10%, rgba(255, 255, 255, 0.4) 90%, rgba(255, 255, 255, 0) 100%);
+        border-radius: 8px;
+        pointer-events: none;
+    }
+
+    .notiborderglow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid rgba(247, 247, 247, 0.5);
+        border-radius: 8px;
+        pointer-events: none;
+    }
+
+    .notititle {
+        font-size: 1.5em;
+        color: #fabc0b;
+        font-weight: bold;
+    }
+
+    .notibody {
+        margin-top: 10px;
+        color: #1197D4;
+    }
+
+    @media (max-width: 600px) {
+        .logo {
+            margin-left: 50px;
+            /* Ajusta este valor según tus necesidades para mover el logotipo más a la derecha */
+            margin-bottom: 10px;
+            /* Ajusta este valor para agregar un espacio entre el logotipo y la notificación */
+        }
+
+        .notification {
+            padding: 10px;
+            /* Ajusta este valor según tus necesidades para hacerlo más ancho */
+            text-align: center;
+            /* Centra el contenido */
+            margin-bottom: 20px;
+            /* Ajusta este valor para agregar espacio debajo de la notificación */
+        }
+
+        .notititle {
+            font-size: 1.8em;
+            /* Ajusta el tamaño de fuente para que sea más grande */
+        }
+
+        .notibody {
+            margin-top: 10px;
+            /* Ajusta este valor según tus necesidades para cambiar el margen superior */
+            font-size: 0.8em;
+            /* Ajusta el tamaño de fuente para que sea más pequeño */
+        }
+    }
+
+    .walletBalanceCard {
+        width: 100%;
+        height: 135px;
+        background-color: #ffffff;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2%;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 2% 0;
+        margin-left: 2%;
+    }
+
+    .svgwrapper {
+        width: 12%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-left: 30%;
+    }
+
+    .svgwrapper svg {
+        width: 80%;
+    }
+
+    .balancewrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: 2%;
+    }
+
+    .balanceHeading {
+        font-size: 20px;
+        color: rgb(201, 21, 21);
+        font-weight: 100;
+        letter-spacing: 0.6px;
+        margin-bottom: 5px;
+        text-align: right;
+    }
+
+    .balance {
+        font-size: 4vw;
+        /* Cambié a unidades relativas para adaptarse mejor */
+        color: rgb(17, 173, 12);
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-align: right;
+    }
+
+    .addmoney {
+        padding: 8px 15px;
+        border-radius: 20px;
+        background-color: #c083eb;
+        color: white;
+        border: none;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .addmoney:hover {
+        background-color: whitesmoke;
+        color: #9c59cc;
+    }
+
+    .plussign {
+        font-size: 20px;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .walletBalanceCard {
+            flex-direction: column;
+        }
+
+        .svgwrapper {
+            margin-left: 0;
+            margin-bottom: 10px;
+        }
+
+        .balancewrapper {
+            align-items: center;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .balance {
+            font-size: 3vw;
+        }
+    }
+
+    .logo {
+        float: left;
+        margin-left: 20px;
+        /* Ajusta este valor según tus necesidades para mover el logotipo más a la derecha */
+        width: 100px;
+        /* Ajusta el ancho de la imagen según tus necesidades */
+        height: auto;
+        /* Mantiene la proporción original al ajustar el ancho */
+    }
+    .loader {
+  position: relative;
+  width: 70px; /* Aumenté el ancho a 100px */
+  height: 100px; /* Aumenté la altura a 120px */
+  margin-right: 60x;
+    }
+
+.loader__bar {
+  position: absolute;
+  bottom: 0;
+  width: 10px;
+  height: 50%;
+  background: rgb(0, 0, 0);
+  transform-origin: center bottom;
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.loader__bar:nth-child(1) {
+  left: 0px;
+  transform: scale(1, 0.2);
+  -webkit-animation: barUp1 4s infinite;
+  animation: barUp1 4s infinite;
+}
+
+.loader__bar:nth-child(2) {
+  left: 15px;
+  transform: scale(1, 0.4);
+  -webkit-animation: barUp2 4s infinite;
+  animation: barUp2 4s infinite;
+}
+
+.loader__bar:nth-child(3) {
+  left: 30px;
+  transform: scale(1, 0.6);
+  -webkit-animation: barUp3 4s infinite;
+  animation: barUp3 4s infinite;
+}
+
+.loader__bar:nth-child(4) {
+  left: 45px;
+  transform: scale(1, 0.8);
+  -webkit-animation: barUp4 4s infinite;
+  animation: barUp4 4s infinite;
+}
+
+.loader__bar:nth-child(5) {
+  left: 60px;
+  transform: scale(1, 1);
+  -webkit-animation: barUp5 4s infinite;
+  animation: barUp5 4s infinite;
+}
+
+.loader__ball {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: rgb(44, 143, 255);
+  border-radius: 50%;
+  -webkit-animation: ball624 4s infinite;
+  animation: ball624 4s infinite;
+}
+
+@keyframes ball624 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  5% {
+    transform: translate(8px, -14px);
+  }
+
+  10% {
+    transform: translate(15px, -10px);
+  }
+
+  17% {
+    transform: translate(23px, -24px);
+  }
+
+  20% {
+    transform: translate(30px, -20px);
+  }
+
+  27% {
+    transform: translate(38px, -34px);
+  }
+
+  30% {
+    transform: translate(45px, -30px);
+  }
+
+  37% {
+    transform: translate(53px, -44px);
+  }
+
+  40% {
+    transform: translate(60px, -40px);
+  }
+
+  50% {
+    transform: translate(60px, 0);
+  }
+
+  57% {
+    transform: translate(53px, -14px);
+  }
+
+  60% {
+    transform: translate(45px, -10px);
+  }
+
+  67% {
+    transform: translate(37px, -24px);
+  }
+
+  70% {
+    transform: translate(30px, -20px);
+  }
+
+  77% {
+    transform: translate(22px, -34px);
+  }
+
+  80% {
+    transform: translate(15px, -30px);
+  }
+
+  87% {
+    transform: translate(7px, -44px);
+  }
+
+  90% {
+    transform: translate(0, -40px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@-webkit-keyframes barUp1 {
+  0% {
+    transform: scale(1, 0.2);
+  }
+
+  40% {
+    transform: scale(1, 0.2);
+  }
+
+  50% {
+    transform: scale(1, 1);
+  }
+
+  90% {
+    transform: scale(1, 1);
+  }
+
+  100% {
+    transform: scale(1, 0.2);
+  }
+}
+
+@keyframes barUp1 {
+  0% {
+    transform: scale(1, 0.2);
+  }
+
+  40% {
+    transform: scale(1, 0.2);
+  }
+
+  50% {
+    transform: scale(1, 1);
+  }
+
+  90% {
+    transform: scale(1, 1);
+  }
+
+  100% {
+    transform: scale(1, 0.2);
+  }
+}
+
+@-webkit-keyframes barUp2 {
+  0% {
+    transform: scale(1, 0.4);
+  }
+
+  40% {
+    transform: scale(1, 0.4);
+  }
+
+  50% {
+    transform: scale(1, 0.8);
+  }
+
+  90% {
+    transform: scale(1, 0.8);
+  }
+
+  100% {
+    transform: scale(1, 0.4);
+  }
+}
+
+@keyframes barUp2 {
+  0% {
+    transform: scale(1, 0.4);
+  }
+
+  40% {
+    transform: scale(1, 0.4);
+  }
+
+  50% {
+    transform: scale(1, 0.8);
+  }
+
+  90% {
+    transform: scale(1, 0.8);
+  }
+
+  100% {
+    transform: scale(1, 0.4);
+  }
+}
+
+@-webkit-keyframes barUp3 {
+  0% {
+    transform: scale(1, 0.6);
+  }
+
+  100% {
+    transform: scale(1, 0.6);
+  }
+}
+
+@keyframes barUp3 {
+  0% {
+    transform: scale(1, 0.6);
+  }
+
+  100% {
+    transform: scale(1, 0.6);
+  }
+}
+
+@-webkit-keyframes barUp4 {
+  0% {
+    transform: scale(1, 0.8);
+  }
+
+  40% {
+    transform: scale(1, 0.8);
+  }
+
+  50% {
+    transform: scale(1, 0.4);
+  }
+
+  90% {
+    transform: scale(1, 0.4);
+  }
+
+  100% {
+    transform: scale(1, 0.8);
+  }
+}
+
+@keyframes barUp4 {
+  0% {
+    transform: scale(1, 0.8);
+  }
+
+  40% {
+    transform: scale(1, 0.8);
+  }
+
+  50% {
+    transform: scale(1, 0.4);
+  }
+
+  90% {
+    transform: scale(1, 0.4);
+  }
+
+  100% {
+    transform: scale(1, 0.8);
+  }
+}
+
+@-webkit-keyframes barUp5 {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  40% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1, 0.2);
+  }
+
+  90% {
+    transform: scale(1, 0.2);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes barUp5 {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  40% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1, 0.2);
+  }
+
+  90% {
+    transform: scale(1, 0.2);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}
+

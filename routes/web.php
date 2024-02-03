@@ -39,13 +39,13 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::resource('/roles', RolesController::class)->names('roles');
-    Route::resource('/permisos',PermisoController::class)->names('permisos');
+    Route::resource('/roles', RolesController::class)->names('roles');//accede a la clase y todos los metodos que hay en los roles, como create etc
+    Route::resource('/permisos',PermisoController::class)->names('permisos');//accede a las clases y todos  sus metodos
     Route::resource('/usuarios',AsignarController::class)->names('asignar');
     Route::resource('/tesoreria',TesoreriaController::class)->names('tesoreria');
-    Route::get('/conductores/create', [ConductoresController::class, 'create'])->name('conductores.create');
+    Route::get('/conductores/create', [ConductoresController::class, 'create'])->name('conductores.create'); //esta muestra el formulario de create para hacer regristro de un clienete
     Route::get('/conductores', [ConductoresController::class, 'index'])->name('conductores.index');
-    Route::post('/conductores', [ConductoresController::class, 'store'])->name('conductores.store');
+    Route::post('/conductores', [ConductoresController::class, 'store'])->name('conductores.store');  // esta hace el regristro del cleiente en la base de datos
     Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.index');
     Route::resource('agregarPlaca', PlacaController::class)->except(['show']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

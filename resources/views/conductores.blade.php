@@ -1,5 +1,7 @@
 @extends('adminlte::page')
 
+@section('title', 'Conductores')
+
 @section('content')
 <style>
     body {
@@ -36,48 +38,52 @@
     }
 
     .btn-crear {
+  /* Estilos actuales del botón */
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; /* Alinea verticalmente el botón */
   padding: 15px 20px;
   gap: 8px;
   height: 60px;
   width: 200px;
   border: none;
-  background: #FABC0B; /* Yellow background */
-  color: #ffffff; /* White text color */
+  background: #fabc0b;
+  color: #ffffff;
   border-radius: 50px;
   cursor: pointer;
   position: relative;
-  transition: background 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .btn-crear .span {
+  /* Estilos del icono dentro del botón */
   border-radius: 50%;
-  background-color: #ffffff; /* White for the icon */
+  background-color: #ffffff;
   padding: 10px;
   position: absolute;
   left: 0;
 }
 
 .lable {
+  /* Estilos del texto del botón */
   line-height: 22px;
   font-size: 17px;
-  color: #ffffff; /* White text color */
+  color: #ffffff;
   margin-left: 20px;
   font-family: sans-serif;
   letter-spacing: 1px;
 }
 
 .btn-crear:hover {
-  background: #1285AD; /* Blue background on hover */
-  color: #ffffff; /* White text color on hover */
+  /* Estilos en hover del botón */
+  background: #1285ad;
+  color: #ffffff;
 }
 
 .btn-crear:hover .svg-icon {
+  /* Estilos del icono en hover del botón */
   animation: slope 0.8s linear infinite;
 }
-
 @keyframes slope {
   0% {}
   50% {
@@ -238,13 +244,17 @@
   color: #05060fc2;
 }
 .notification {
+  display: inline-block; /* Hace que el elemento tenga el mismo tamaño independientemente del contenido */
     position: relative;
-    background-color: ;
+    background-color: ; /* Agrega el color de fondo que desees */
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    /* Puedes ajustar el ancho según tus necesidades */
+    margin: auto;
 }
+
 
 .notiglow {
     position: absolute;
@@ -263,81 +273,103 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(247, 247, 247, 0.5);
     border-radius: 8px;
     pointer-events: none;
 }
 
 .notititle {
     font-size: 1.5em;
-    color: #333;
+    color: #fabc0b;
     font-weight: bold;
 }
 
 .notibody {
     margin-top: 10px;
-    color: #555;
+    color: #1197D4;
 }
 
 /* Estilos responsivos */
+/* Estilos generales */
+
+/* Media query para pantallas con un ancho máximo de 500px */
 @media (max-width: 600px) {
-    .notification {
-        padding: 15px;
-    }
+  .logo {
+    margin-left: 50px; /* Ajusta este valor según tus necesidades para mover el logotipo más a la derecha */
+    margin-bottom: 10px; /* Ajusta este valor para agregar un espacio entre el logotipo y la notificación */
+  }
 
-    .notititle {
-        font-size: 1.2em;
-    }
+  .notification {
+    padding: 10px; /* Ajusta este valor según tus necesidades para hacerlo más ancho */
+    text-align: center; /* Centra el contenido */
+    margin-bottom: 20px; /* Ajusta este valor para agregar espacio debajo de la notificación */
+  }
 
-    .notibody {
-        margin-top: 8px;
-        font-size: 0.9em;
-    }
+  .notititle {
+    font-size: 1.8em; /* Ajusta el tamaño de fuente para que sea más grande */
+  }
+
+  .notibody {
+    margin-top: 10px; /* Ajusta este valor según tus necesidades para cambiar el margen superior */
+    font-size: 0.8em; /* Ajusta el tamaño de fuente para que sea más pequeño */
+  }
 }
+
 .walletBalanceCard {
-  width: 300px;
-  height: 120px;
-  background-color: #eaebf5;
-  border-radius: 10px;
+  width: 100%;
+  height: 135px;
+  background-color: #ffffff;
+  border-radius: 50px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  padding: 0px 12px;
+  justify-content: space-between;
+  padding: 0 2%;
   font-family: Arial, Helvetica, sans-serif;
+  margin: 2% 0;
+  margin-left: 2%;
 }
+
 .svgwrapper {
-  width: 28px;
+  width: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  margin-left: 15%;
 }
+
 .svgwrapper svg {
-  width: 100%;
+  width: 80%;
 }
+
 .balancewrapper {
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
   flex-direction: column;
-  width: 120px;
-  gap: 0px;
+  align-items: flex-end;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 2%;
 }
+
 .balanceHeading {
-  font-size: 8px;
-  color: rgb(214, 214, 214);
+  font-size: 20px;
+  color: rgb(201, 21, 21);
   font-weight: 100;
   letter-spacing: 0.6px;
+  margin-bottom: 5px;
+  text-align: right;
 }
+
 .balance {
-  font-size: 13.5px;
-  color: white;
+  font-size: 4vw; /* Cambié a unidades relativas para adaptarse mejor */
+  color: rgb(17, 173, 12);
   font-weight: 600;
   letter-spacing: 0.5px;
+  text-align: right;
 }
 
 .addmoney {
-  padding: 1px 15px;
+  padding: 8px 15px;
   border-radius: 20px;
   background-color: #c083eb;
   color: white;
@@ -350,44 +382,62 @@
   justify-content: center;
   gap: 5px;
 }
+
 .addmoney:hover {
   background-color: whitesmoke;
   color: #9c59cc;
 }
+
 .plussign {
   font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .walletBalanceCard {
+    flex-direction: column;
+  }
+
+  .svgwrapper {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .balancewrapper {
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+  }
+    .balance {
+    font-size: 3vw;
+  }
+}
+.logo {
+  float: left;
+  margin-left: 20px; /* Ajusta este valor según tus necesidades para mover el logotipo más a la derecha */
+  width: 100px; /* Ajusta el ancho de la imagen según tus necesidades */
+  height: auto; /* Mantiene la proporción original al ajustar el ancho */
 }
 
 
 
+
+
+
+
 </style>
-
-
+<div class="header">
+<img src="{{ asset('imagenes/logo.jpg') }}" alt="Logo de la empresa" class="logo">
+</div>
 <div class="main-container">
-    <div class="main-card">
-        <div class="main-card-header">
-            <div class="notification">
-                <div class="notiglow"></div>
-                <div class="notiborderglow"></div>
-                <div class="notititle">Clientes Creados Universal</div>
-                <div class="notibody">Registra y visualiza fácilmente tus pedidos aquí. Simplifica el proceso de registro.</div>
-            </div>
-            
-            <a href="{{ route('conductores.create') }}" class="btn-crear">
-                <span class="span">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 21" height="21" width="23" class="svg-icon">
-                    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="black" d="M1.97742 19.7776C4.45061 17.1544 7.80838 15.5423 11.5068 15.5423C15.2053 15.5423 18.5631 17.1544 21.0362 19.7776M16.2715 6.54229C16.2715 9.17377 14.1383 11.307 11.5068 11.307C8.87535 11.307 6.74212 9.17377 6.74212 6.54229C6.74212 3.91082 8.87535 1.77759 11.5068 1.77759C14.1383 1.77759 16.2715 3.91082 16.2715 6.54229Z"></path>
-                    </svg>
-                </span>
-                <span class="lable">Crear cliente</span>
-            </a>
-
-              
-        </div>
-
+  <div class="main-card">
+    <div class="main-card-header">
+      <div class="notification">
+        <div class="notiglow"></div>
+        <div class="notiborderglow"></div>
+        <div class="notititle">Clientes Creados Universal</div>
+        <div class="notibody">Registra y visualiza fácilmente tus pedidos aquí. Simplifica el proceso de registro.</div>
+      </div>  
+    </div>
         <!-- Formulario de Filtros -->
         <form method="GET" action="{{ route('conductores.index') }}" class="filter-form">
             <div class="row">
@@ -420,8 +470,17 @@
             </div>
         </form>
 
-        <!-- Contenido Principal -->
+
+        
         <div class="walletBalanceCard">
+          <a href="{{ route('conductores.create') }}" class="btn-crear">
+            <span class="span">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 21" height="21" width="23" class="svg-icon">
+                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="black" d="M1.97742 19.7776C4.45061 17.1544 7.80838 15.5423 11.5068 15.5423C15.2053 15.5423 18.5631 17.1544 21.0362 19.7776M16.2715 6.54229C16.2715 9.17377 14.1383 11.307 11.5068 11.307C8.87535 11.307 6.74212 9.17377 6.74212 6.54229C6.74212 3.91082 8.87535 1.77759 11.5068 1.77759C14.1383 1.77759 16.2715 3.91082 16.2715 6.54229Z"></path>
+                </svg>
+            </span>
+            <span class="lable">Crear cliente</span>
+        </a>
             <div class="svgwrapper">
               <svg viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect
@@ -456,7 +515,7 @@
             </div>
           
             <div class="balancewrapper">
-              <span class="balanceHeading">Wallet balance</span>
+              <span class="balanceHeading">Total valor hecho</span>
               <p class="balance"><span id="currency">₹</span>${{ number_format($totalValor, 2, '.', ',') }}</p>
             </div>
           

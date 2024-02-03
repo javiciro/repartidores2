@@ -1,15 +1,21 @@
 @extends('adminlte::page')
 
+@section('title', 'Roles')
+
 @section('content')
 <style>
+    body {
+        background-color: #f8f9fa; /* Fondo gris claro */
+    }
+
     .card-header h3 {
         font-size: 28px;
-        color: #3498db;
+        color: #1285AD; /* Azul Claro 2 */
         text-transform: uppercase;
     }
 
     .card-header a.btn-success {
-        background-color: #3498db;
+        background-color: #FABC0B; /* Amarillo */
         color: #fff;
         font-weight: bold;
         font-size: 18px;
@@ -17,12 +23,13 @@
     }
 
     .table {
-        background-color: #ecf0f1;
+        background-color: #ffffff; /* Blanco */
     }
 
     .table th,
     .table td {
         font-size: 16px;
+        color: #333; /* Texto oscuro para mejor legibilidad */
     }
 
     .font-size-large {
@@ -40,34 +47,55 @@
         border-bottom: 1px solid #dee2e6;
     }
 
+    .btn-primary,
+    .btn-warning,
+    .btn-danger {
+        font-weight: bold;
+    }
+
     .btn-primary {
-        background-color: #3498db;
-        border-color: #3498db;
+        background-color: #1285AD; /* Azul Claro 2 */
+        border-color: #1285AD; /* Azul Claro 2 */
     }
 
     .btn-primary:hover {
-        background-color: #2980b9;
-        border-color: #2980b9;
+        background-color: #1197D4; /* Azul Claro */
+        border-color: #1197D4; /* Azul Claro */
     }
 
     .btn-warning {
-        background-color: #f39c12;
-        border-color: #f39c12;
+        background-color: #FABC0B; /* Amarillo */
+        border-color: #FABC0B; /* Amarillo */
     }
 
     .btn-warning:hover {
-        background-color: #d78e0b;
-        border-color: #d78e0b;
+        background-color: #DAA509; /* Amarillo más oscuro */
+        border-color: #DAA509; /* Amarillo más oscuro */
     }
 
     .btn-danger {
-        background-color: #e74c3c;
-        border-color: #e74c3c;
+        background-color: #E74C3C;
+        border-color: #E74C3C;
     }
 
     .btn-danger:hover {
-        background-color: #c23c2b;
-        border-color: #c23c2b;
+        background-color: #C23C2B;
+        border-color: #C23C2B;
+    }
+
+    /* Modificaciones para mejorar la visibilidad y atractivo */
+    .card-body {
+        padding: 20px;
+    }
+
+    .table th,
+    .table td {
+        text-align: center;
+        padding: 12px;
+    }
+
+    .btn-success {
+        margin-top: 10px;
     }
 
 </style>
@@ -90,18 +118,14 @@
                             <table class="table table-bordered table-striped table-white">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($roles as $role)
                                         <tr>
-                                            <td>{{ $role->id }}</td>
                                             <td>{{ $role->name }}</td>
-                                            <td>{{ $role->description }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm">Editar</a>
@@ -118,7 +142,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">No hay roles registrados.</td>
+                                            <td colspan="2" class="text-center">No hay roles registrados.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

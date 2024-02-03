@@ -1,31 +1,52 @@
 @extends('adminlte::page')
 
+@section('title', 'Permisos')
+
 @section('content')
 <style>
+    body {
+        background-color: #f4f6f9; /* Light Grayish Blue */
+    }
+
     .card-header h3 {
-        font-size: 28px;
-        color: #3498db;
+        font-size: 24px;
+        color: #1285AD; /* Light Blue 2 */
         text-transform: uppercase;
     }
 
     .card-header a.btn-primary {
-        background-color: #3498db;
+        background-color: #1285AD; /* Light Blue 2 */
         color: #fff;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 16px;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .card-header a.btn-primary:hover {
+        background-color: #1197D4; /* Light Blue */
     }
 
     .card {
         background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
     .table {
-        background-color: #ecf0f1;
+        background-color: #fff;
+        border: 1px solid #ddd;
     }
 
     .table th,
     .table td {
-        font-size: 16px;
+        font-size: 14px;
+        color: #555; /* Dark Gray */
     }
 
     .empty-row {
@@ -35,20 +56,29 @@
     }
 
     .custom-alert {
-        background-color: #f8d7da;
-        border-color: #f5c6cb;
+        background-color: #FABC0B; /* Yellow */
+        border-color: #FABC0B; /* Yellow */
         color: #721c24;
+    }
+
+    .btn-warning,
+    .btn-danger {
+        color: #fff;
+    }
+
+    .btn-danger:hover {
+        background-color: #FF6347; /* Tomato */
     }
 </style>
 
-<div class="container">
+<div class="container mt-4">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Gestión de Permisos</h3>
                     <div class="card-tools">
-                        <a href="{{ route('permisos.create') }}" class="btn btn-primary" data-toggle="modal" data-target="#modalPurple">Agregar permiso</a>
+                        <a href="{{ route('permisos.create') }}" class="btn btn-primary" data-toggle="modal" data-target="#modalPurple">Agregar Permiso</a>
                     </div>
                 </div>
                 <div class="card-body">

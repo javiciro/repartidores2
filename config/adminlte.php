@@ -14,8 +14,8 @@ return [
     |
     */
 
-'title' => 'Papeleria Universal',
-'title_prefix' => '',
+'title' => '',
+'title_prefix' => 'Papeleria Universal | ',
 'title_postfix' => '',
 
 /*
@@ -29,8 +29,8 @@ return [
 | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
 |
 */
-'use_ico_only' => false,
-'use_full_favicon' => true,
+'use_ico_only' => true,
+'use_full_favicon' => false,
 
 /*
 |--------------------------------------------------------------------------
@@ -58,13 +58,13 @@ return [
 | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
 |
 */
-//'logo' => '<a href="#" onclick="window.location.reload();"><a>Papeleria</a>',
+'logo' => '<b>Papeleria</b>',
 'logo_img' => 'vendor/adminlte/dist/img/logo1.png',
-'logo_img_class' => 'brand-image img-circle elevation-3 border-0',
+'logo_img_class' => 'brand-image img ',
 'logo_img_xl_class' => 'brand-image-xl',
 'logo_img_style' => 'width: auto; max-width: 100%; height: auto;',
 'brand_link_class' => 'brand-link border-bottom-2',
-'logo_img_alt' => 'Admin Logo',
+'logo_img_alt' => 'Universal',
 'logo_img_href' => '#', // Set a dummy link; it will be overridden by the onclick attribute
 
 /*
@@ -144,7 +144,7 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
+    'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
@@ -182,7 +182,7 @@ return [
 
     'classes_body' => '',
     'classes_brand' => '',
-    'classes_brand_text' => '',
+    'classes_brand_text' => 'text-primary',
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
@@ -205,7 +205,7 @@ return [
     */
 
     'sidebar_mini' => 'xs',
-    'sidebar_collapse' => false,
+    'sidebar_collapse' => true,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
     'sidebar_collapse_remember_no_transition' => true,
@@ -313,7 +313,7 @@ return [
             
         ],
         [
-            'text' => 'Reportes',
+            'text' => 'Estadisticas',
             'url'  => '/reportes',
             'icon' => 'fa fa-solid fa-file-export',
             'can' =>  'CONDUCTORES',
