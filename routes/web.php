@@ -40,8 +40,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::resource('/roles', RolesController::class)->names('roles');//accede a la clase y todos los metodos que hay en los roles, como create etc
-    Route::resource('/permisos',PermisoController::class)->names('permisos');//accede a las clases y todos  sus metodos
-    Route::resource('/usuarios',AsignarController::class)->names('asignar');
+    Route::resource('/permisos',PermisoController::class)->names('permisos');//accede a las clases y todos  sus metodos de controlador permisos
+    Route::resource('/usuarios',AsignarController::class)->names('asignar');//
     Route::resource('/tesoreria',TesoreriaController::class)->names('tesoreria');
     Route::get('/conductores/create', [ConductoresController::class, 'create'])->name('conductores.create'); //esta muestra el formulario de create para hacer regristro de un clienete
     Route::get('/conductores', [ConductoresController::class, 'index'])->name('conductores.index');
