@@ -139,6 +139,15 @@ class ConductoresController extends Controller
         $clientes = Facturacione::where('user_id', $userId)->get();
         return $clientes;
     }
+    public function limpiarFiltros(Request $request)
+    {
+        // Aquí puedes manejar la lógica para limpiar los filtros, por ejemplo, borrar los datos de sesión.
+        // Por ejemplo, si estás usando datos de sesión para almacenar los filtros, podrías hacer algo como esto:
+        $request->session()->forget(['fecha_creacion', 'estado', 'cliente_filtro']);
+
+        // Luego redirige de nuevo a la página actual
+        return redirect()->back();
+    }
 
     // ... (other methods)
 }

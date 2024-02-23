@@ -6,7 +6,7 @@
 <style>
     body {
         font-family: 'Arial', sans-serif;
-        background-color: #f2f2f2;
+        background-color: #ffffff;
     }
 
     .main-container {
@@ -14,7 +14,7 @@
     }
 
     .main-card {
-        background-color: #ffffff;
+        background-color: #e2e2e2;
         border-radius: 15px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         padding: 20px;
@@ -293,25 +293,24 @@
 /* Estilos generales */
 
 /* Media query para pantallas con un ancho máximo de 500px */
-@media (max-width: 600px) {
-  .logo {
-    margin-left: 50px; /* Ajusta este valor según tus necesidades para mover el logotipo más a la derecha */
-    margin-bottom: 10px; /* Ajusta este valor para agregar un espacio entre el logotipo y la notificación */
-  }
-
+@media (max-width: 400px) {
   .notification {
-    padding: 10px; /* Ajusta este valor según tus necesidades para hacerlo más ancho */
-    text-align: center; /* Centra el contenido */
-    margin-bottom: 20px; /* Ajusta este valor para agregar espacio debajo de la notificación */
+    padding: 8px; /* Reducir el padding para conservar el espacio */
   }
 
   .notititle {
-    font-size: 1.8em; /* Ajusta el tamaño de fuente para que sea más grande */
+    font-size: 1.5em; /* Reducir el tamaño de la fuente del título */
   }
 
   .notibody {
-    margin-top: 10px; /* Ajusta este valor según tus necesidades para cambiar el margen superior */
-    font-size: 0.8em; /* Ajusta el tamaño de fuente para que sea más pequeño */
+    margin-top: 8px; /* Reducir el margen superior */
+    font-size: 0.7em; /* Reducir el tamaño de la fuente del cuerpo */
+  }
+
+  /* Ajustar el margen del logotipo */
+  .logo {
+    margin-left: 20px;
+    margin-bottom: 5px;
   }
 }
 
@@ -411,23 +410,10 @@
     font-size: 3vw;
   }
 }
-.logo {
-  float: left;
-  margin-left: 20px; /* Ajusta este valor según tus necesidades para mover el logotipo más a la derecha */
-  width: 100px; /* Ajusta el ancho de la imagen según tus necesidades */
-  height: auto; /* Mantiene la proporción original al ajustar el ancho */
-}
-
-
-
-
-
-
 
 </style>
-<div class="header">
-<img src="{{ asset('imagenes/logo.jpg') }}" alt="Logo de la empresa" class="logo">
-</div>
+
+
 <div class="main-container">
   <div class="main-card">
     <div class="main-card-header">
@@ -462,7 +448,9 @@
                     <label class="text-white">-</label>
                     <div class="borrar_limpiar">
                       <button type="submit" class="btn button button-danger">Buscar</button>
-                      <button  href="{{ route('conductores.index') }}" class="btn button button-danger">Limpiar</button>
+                      <button type="button" class="btn button button-danger" onclick="limpiarFiltros()">Limpiar</button>
+
+
                     </div>
                 </div>
                 
@@ -571,4 +559,13 @@
         </div>
     </div>
 </div>
+<script>
+  function limpiarFiltros() {
+    document.querySelectorAll('.filter-form input, .filter-form select').forEach(function(el) {
+      el.value = '';
+    });
+    document.querySelector('.filter-form').submit();
+  }
+</script>
+
 @endsection
