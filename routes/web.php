@@ -45,7 +45,13 @@ Route::middleware([
     Route::resource('/tesoreria',TesoreriaController::class)->names('tesoreria');
     Route::get('/conductores/create', [ConductoresController::class, 'create'])->name('conductores.create'); //esta muestra el formulario de create para hacer regristro de un clienete
     Route::get('/conductores', [ConductoresController::class, 'index'])->name('conductores.index');
-    Route::post('/conductores', [ConductoresController::class, 'store'])->name('conductores.store');  // esta hace el regristro del cleiente en la base de datos
+    Route::post('/conductores', [ConductoresController::class, 'store'])->name('conductores.store'); 
+    Route::get('/conductores/crud', [ConductoresController::class, 'crud'])->name('conductores.crud');
+    Route::get('/conductores/{id}/edit', [ConductoresController::class, 'edit'])->name('conductores.edit');
+
+    Route::put('/conductores/{id}', [ConductoresController::class, 'update'])->name('conductores.update'); // Para actualizar un registro
+    Route::delete('/conductores/{id}', [ConductoresController::class, 'destroy'])->name('conductores.destroy'); // Para eliminar un registro
+    // esta hace el regristro del cleiente en la base de datos
     Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.index');
     Route::resource('agregarPlaca', PlacaController::class)->except(['show']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -56,6 +62,10 @@ Route::middleware([
     Route::get('/reportes/diario', [ReportesController::class, 'diario'])->name('reportes.diario');
     Route::get('/reportes/mensual', [ReportesController::class, 'mensual'])->name('reportes.mensual');
     Route::get('/reportes/anual', [ReportesController::class, 'anual'])->name('reportes.anual');
+
+    Route::get('/placas/{id}/edit', [PlacaController::class, 'edit'])->name('placa.edit');
+Route::put('/placas/{id}', [PlacaController::class, 'update'])->name('placa.update');
+Route::delete('/placas/{id}', [PlacaController::class, 'destroy'])->name('placa.destroy');
 
 
 });

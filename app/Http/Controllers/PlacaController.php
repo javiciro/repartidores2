@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Placa;
 
 class PlacaController extends Controller {
-    
+
     public function index() {
         $placas = Placa::paginate(10);
         return view('agregarPlaca', compact('placas'));
@@ -34,11 +34,6 @@ class PlacaController extends Controller {
         return redirect()->back()->with('success', 'Placa guardada exitosamente.');
     }
 
-    public function edit($id) {
-        $placa = Placa::find($id);
-        return view('agregarPlaca.edit', compact('placa'));
-    }
-
     public function update(Request $request, $id) {
         // Validation
         $request->validate([
@@ -48,6 +43,9 @@ class PlacaController extends Controller {
         // Actualizar los datos de la Placa
         try {
             $placa = Placa::find($id);
+            if (!$placa) {
+                return redirect()->back()->with('error', 'Placa no encontrada.');
+            }
             $placa->update([
                 'placa' => $request->input('placa'),
             ]);

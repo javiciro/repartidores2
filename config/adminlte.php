@@ -295,6 +295,13 @@ return [
             'topnav_right' => true,
         ],
 
+        [
+            'text' => 'Editar',
+            'url'  => '/conductores/crud',
+            'icon' => 'fas fa-solid fa-pen',
+            'can' =>  'ADMINISTRADORES',
+        ],
+
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
@@ -319,13 +326,13 @@ return [
             'can' =>  'CONDUCTORES',
         ],
         [
-            'text' => 'Permisos',
+            'text' => 'Roles',
             'url'  => '/permisos',
             'icon' => 'fa fas fa-unlock',
             'can' =>  'ADMINISTRADORES',
         ],
         [
-            'text' => 'Roles',
+            'text' => 'Permisos',
             'url'  => '/roles',
             'icon' => 'fa fas fa-people-arrows',
             'can' =>  'ADMINISTRADORES',
@@ -340,7 +347,7 @@ return [
             'text' => 'Tesoreria',
             'url'  => '/tesoreria',
             'icon' => 'fa fas fa-money-check-alt',
-            'can' =>  'tesorero',
+            'can' =>  'TESORERIA',
         ],
         [
             'text' => 'Placa',
@@ -353,6 +360,7 @@ return [
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
         ],
+   
         
     ],
 

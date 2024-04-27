@@ -12,27 +12,27 @@ class TesoreriaController extends Controller
 {
     public function index(Request $request)
     {
-        // Start with an unfiltered query
+        // Start with an unfiltered query for all registros
         $datos = Facturacione::query();
-    
+        
         // Apply filters conditionally
         if ($request->filled('start_date')) {
             // Include records up to the end of the day
             $datos->where('created_at', '>=', $request->input('start_date') . ' 00:00:00')
                 ->where('created_at', '<=', $request->input('start_date') . ' 23:59:59');
         }
-    
+        
         if ($request->filled('user_id')) {
             $datos->where('user_id', $request->input('user_id'));
         }
-    
+        
         if ($request->filled('estado')) {
             // Si el estado es diferente de "Todos", aplicar filtro
             if ($request->input('estado') !== 'todos') {
                 $datos->where('estado', $request->input('estado'));
             }
         }
-    
+        
         if ($request->filled('search')) {
             $search = $request->input('search');
             $datos->where(function ($query) use ($search) {
@@ -42,19 +42,23 @@ class TesoreriaController extends Controller
                     ->orWhere('estado', 'like', "%$search%");
             });
         }
-    
-        // Get all users (modify this based on your application logic)
-        $users = User::all(); // Change this to fit your user retrieval logic
-    
-        // Sum of Values
+        
+        // Sum of Values for filtered registros
         $sumaValores = $datos->sum('valor');
     
+        // Order by created_at in descending order to get the latest records first
+        $datos->orderBy('created_at', 'desc');
+        
         // Get paginated data after applying filters
         $datos = $datos->paginate(7);
-    
-        // Pass the $users variable to the view
+        
+        // Get all users (modify this based on your application logic)
+        $users = User::all(); // Change this to fit your user retrieval logic
+        
+        // Pass the $users variable to the view along with $sumaValores
         return view('tesoreria', compact('datos', 'sumaValores', 'users'));
     }
+    
 
     public function editarEstado(Request $request, $id)
     {

@@ -10,6 +10,7 @@ use App\Mail\enviarCorreo;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class ConductoresController extends Controller
 {
@@ -69,20 +70,35 @@ class ConductoresController extends Controller
             // Otros filtros similares para los demás campos...
     
             $clientes = $query->orderBy('created_at', 'desc')->paginate(7);
-            $informes = $query->selectRaw('DATE(created_at) as fecha, SUM(valor) as total')
-            ->groupBy('created_at')
-            ->get();
-        
-         $totalValor = $informes->sum('total');
-         
-
+    
+            // Consulta para obtener informes
+            $informesQuery = Facturacione::selectRaw('DATE(created_at) as fecha, SUM(valor) as total')
+                ->where('user_id', $user->id);
+    
+            // Aplicar filtro por fecha en la consulta de informes
+            if ($request->filled('fecha_creacion')) {
+                $fechaCreacion = $request->input('fecha_creacion');
+                $informesQuery->whereDate('created_at', $fechaCreacion);
+            }
+    
+            // Aplicar filtro por estado en la consulta de informes
+            if ($request->filled('estado')) {
+                // Si el estado es diferente de "Todos", aplicar filtro
+                if ($request->input('estado') !== 'todos') {
+                    $informesQuery->where('estado', $request->input('estado'));
+                }
+            }
+    
+            $informes = $informesQuery->groupBy('fecha')->orderBy('fecha', 'desc')->get();
+    
+            $totalValor = $informes->sum('total');
     
             return view('conductores', compact('clientes', 'user', 'informes', 'totalValor'));
         } else {
             return redirect()->route('login');
         }
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -148,6 +164,99 @@ class ConductoresController extends Controller
         // Luego redirige de nuevo a la página actual
         return redirect()->back();
     }
-
-    // ... (other methods)
+    public function crud(Request $request)
+    {
+        try {
+            // Comenzar con una consulta sin filtrar
+            $datos = Facturacione::query();
+        
+            // Aplicar filtros condicionalmente
+            if ($request->filled('start_date')) {
+                // Incluir registros hasta el final del día
+                $datos->whereBetween('created_at', [
+                    $request->input('start_date') . ' 00:00:00',
+                    $request->input('start_date') . ' 23:59:59'
+                ]);
+            }
+        
+            if ($request->filled('user_id')) {
+                $datos->where('user_id', $request->input('user_id'));
+            }
+        
+            if ($request->filled('estado')) {
+                // Si el estado es diferente de "Todos", aplicar filtro
+                if ($request->input('estado') !== 'todos') {
+                    $datos->where('estado', $request->input('estado'));
+                }
+            }
+        
+            if ($request->filled('search')) {
+                $search = $request->input('search');
+                $datos->where(function ($query) use ($search) {
+                    $query->where('cliente_nombre', 'like', "%$search%")
+                        ->orWhere('observacion', 'like', "%$search%")
+                        ->orWhere('numero_factura', 'like', "%$search%")
+                        ->orWhere('estado', 'like', "%$search%");
+                });
+            }
+        
+            // Obtener datos paginados después de aplicar filtros
+            $clientes = $datos->orderBy('created_at', 'desc')->paginate(10);
+        
+            // Obtener todos los usuarios (modificar según la lógica de tu aplicación)
+            $users = User::all();
+        
+            // Pasar datos adicionales a la vista según sea necesario
+            return view('crudConductores.crud', compact('clientes', 'users'))
+                ->with('success', 'Filtros aplicados correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al procesar la solicitud: ' . $e->getMessage());
+        }
+    }
+    
+    public function edit($id)
+    {
+        try {
+            $cliente = Facturacione::findOrFail($id);
+            return view('crudConductores.edit', compact('cliente'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'No se pudo encontrar el cliente: ' . $e->getMessage());
+        }
+    }
+    
+    public function update(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'cliente_nombre' => 'required|string|max:255',
+                'observacion' => 'nullable|string',
+                'valor' => 'nullable|string',
+                'correo_cliente' => 'nullable|email',
+                'direccion_cliente' => 'nullable|string',
+                'telefono_cliente' => 'nullable|string',
+                'numero_factura' => 'nullable|string',
+                'cc' => 'nullable|string'
+            ]);
+        
+            $cliente = Facturacione::findOrFail($id);
+            $cliente->update($request->all());
+        
+            return redirect()->route('conductores.crud')->with('success', 'Registro actualizado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al actualizar el registro: ' . $e->getMessage());
+        }
+    }
+    
+    public function destroy($id)
+    {
+        try {
+            $cliente = Facturacione::findOrFail($id);
+            $cliente->delete();
+        
+            return redirect()->back()->with('success', 'Registro eliminado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error al eliminar el registro: ' . $e->getMessage());
+        }
+    }
+    
 }

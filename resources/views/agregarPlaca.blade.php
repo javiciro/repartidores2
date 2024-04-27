@@ -1,8 +1,10 @@
 @extends('adminlte::page')
 
 @section('title', 'Placas')
+>
 
 @section('content')
+
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -11,7 +13,7 @@
                         <h3 class="card-title">Agregar Placa</h3>
                     </div>
                     <div class="card-body">
-                        @if(session('success'))
+                        @if (session('success'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('success') }}
                             </div>
@@ -23,7 +25,8 @@
                                 <label for="placa">Placa:</label>
                                 <input type="text" name="placa" id="placa" class="form-control" required>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="background-color: #1285AD;">Guardar Placa</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: #1285AD;">Guardar
+                                Placa</button>
                         </form>
                     </div>
                 </div>
@@ -39,16 +42,58 @@
                             <thead>
                                 <tr>
                                     <th>Placa</th>
+                                    <th>Acciones</th> <!-- Agregar una columna para las acciones -->
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($placas as $placa)
                                     <tr>
                                         <td>{{ $placa->placa }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
+                                                data-target="#editarPlaca{{ $placa->id }}">Editar</button>
+                                            <form action="{{ route('placa.destroy', $placa->id) }}" method="post"
+                                                style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('¿Estás seguro de que deseas eliminar esta placa?')">Eliminar</button>
+                                            </form>
+                                        </td>
                                     </tr>
+                                    <!-- Modal de Edición -->
+                                    <div class="modal fade" id="editarPlaca{{ $placa->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="editarPlaca{{ $placa->id }}Label"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editarPlaca{{ $placa->id }}Label">Editar
+                                                        Placa</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('placa.update', $placa->id) }}" method="post">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="form-group">
+                                                            <label for="placa">Placa:</label>
+                                                            <input type="text" name="placa" id="placa"
+                                                                class="form-control" value="{{ $placa->placa }}" required>
+                                                        </div>
+                                                        <button type="submit" class="btn btn-primary">Guardar
+                                                            Cambios</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @empty
                                     <tr>
-                                        <td colspan="1">No hay placas disponibles</td>
+                                        <td colspan="2">No hay placas disponibles</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -61,11 +106,4 @@
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </div>
-
-
-
-@endsection
+    @endsection

@@ -2,9 +2,7 @@
 
 @section('title', 'Panel de Control')
 
-@section('content_header')
-    <h1>Panel de Control</h1>
-@stop
+
 
 @section('content')
 <x-app-layout>
@@ -53,6 +51,3 @@
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
-@section('js')
-    <script> console.log('¡Hola!'); </script>
-@stop

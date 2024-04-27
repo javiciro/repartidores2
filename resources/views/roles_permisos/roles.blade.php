@@ -4,118 +4,174 @@
 
 @section('content')
 <style>
+    /* Variables */
+    :root {
+        --primary-color: #1285AD; /* Azul Claro 2 */
+        --secondary-color: #FABC0B; /* Amarillo */
+        --danger-color: #E74C3C;
+        --success-color: #ffc402;
+        --white-color: #ffffff;
+        --dark-color: #333;
+        --gray-color: #f8f9fa;
+    }
+
+    /* Global Styles */
     body {
-        background-color: #f8f9fa; /* Fondo gris claro */
+        background-color: var(--gray-color);
+        font-family: 'Open Sans', sans-serif;
     }
 
-    .card-header h3 {
-        font-size: 28px;
-        color: #1285AD; /* Azul Claro 2 */
-        text-transform: uppercase;
+   .card {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
     }
 
-    .card-header a.btn-success {
-        background-color: #FABC0B; /* Amarillo */
+   .card-header {
+        background-color: var(--primary-color);
         color: #fff;
-        font-weight: bold;
-        font-size: 18px;
-        margin-left: 10px;
-    }
-
-    .table {
-        background-color: #ffffff; /* Blanco */
-    }
-
-    .table th,
-    .table td {
-        font-size: 16px;
-        color: #333; /* Texto oscuro para mejor legibilidad */
-    }
-
-    .font-size-large {
-        font-size: 18px;
-    }
-
-    .empty-row {
-        text-align: center;
-        font-weight: bold;
-        color: #777;
-    }
-
-    .custom-bg-white {
-        background-color: #ffffff;
-        border-bottom: 1px solid #dee2e6;
-    }
-
-    .btn-primary,
-    .btn-warning,
-    .btn-danger {
-        font-weight: bold;
-    }
-
-    .btn-primary {
-        background-color: #1285AD; /* Azul Claro 2 */
-        border-color: #1285AD; /* Azul Claro 2 */
-    }
-
-    .btn-primary:hover {
-        background-color: #1197D4; /* Azul Claro */
-        border-color: #1197D4; /* Azul Claro */
-    }
-
-    .btn-warning {
-        background-color: #FABC0B; /* Amarillo */
-        border-color: #FABC0B; /* Amarillo */
-    }
-
-    .btn-warning:hover {
-        background-color: #DAA509; /* Amarillo más oscuro */
-        border-color: #DAA509; /* Amarillo más oscuro */
-    }
-
-    .btn-danger {
-        background-color: #E74C3C;
-        border-color: #E74C3C;
-    }
-
-    .btn-danger:hover {
-        background-color: #C23C2B;
-        border-color: #C23C2B;
-    }
-
-    /* Modificaciones para mejorar la visibilidad y atractivo */
-    .card-body {
         padding: 20px;
+        border-bottom: 1px solid var(--gray-color);
     }
 
-    .table th,
-    .table td {
+   .card-header h3 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+   .card-body {
+        padding: 30px;
+    }
+
+   .table {
+        background-color: var(--white-color);
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+   .table th,
+   .table td {
         text-align: center;
-        padding: 12px;
+        padding: 15px;
+        border-bottom: 1px solid var(--gray-color);
     }
 
-    .btn-success {
-        margin-top: 10px;
+   .table th {
+        background-color: var(--primary-color);
+        color: #fff;
     }
 
+   .table td {
+        font-size: 16px;
+        color: var(--dark-color);
+    }
+
+   .btn {
+        font-weight: bold;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+   .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+   .btn-primary:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+   .btn-success {
+        background-color: var(--success-color);
+       border-color: var(--success-color);
+    }
+
+   .btn-success:hover {
+        background-color: var(--success-color);
+        border-color: var(--success-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+   .btn-warning {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+    }
+
+   .btn-warning:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+   .btn-danger {
+        background-color: var(--danger-color);
+        border-color: var(--danger-color);
+    }
+
+   .btn-danger:hover {
+        background-color: var(--danger-color);
+        border-color: var(--danger-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .loading-animation {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 9999;
+    }
+
+    .loading-animation .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        color: var(--primary-color);
+        animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
+    }
 </style>
 
 <div class="container main-content">
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header text-white custom-bg-white">
+            <div class="card animate">
+                <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="card-title">Gestión de Roles</h3>
-                        <a href="{{ route('roles.create') }}" class="btn btn-success">Agregar Rol</a>
+                        
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
+                        <div class="loading-animation">
+                            <div class="spinner">⚙️</div>
+                        </div>
                         @if($roles->isEmpty())
                             <p class="empty-row">No hay roles registrados.</p>
                         @else
-                            <table class="table table-bordered table-striped table-white">
+                            <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -128,13 +184,13 @@
                                             <td>{{ $role->name }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                                    <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm animate">Editar</a>
                                                     
                                                     @can('eliminar_rol')
                                                         <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display:inline;">
-                                                            @csrf
+                @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este rol?')">Eliminar</button>
+                                                            <button type="submit" class="btn btn-danger btn-sm animate" onclick="return confirm('¿Estás seguro de que quieres eliminar este rol?')">Eliminar</button>
                                                         </form>
                                                     @endcan
                                                 </div>
@@ -157,16 +213,9 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
-    $(document).ready(function () {
-        $(".table-row").hover(function () {
-            $(this).css("cursor", "pointer");
-        });
-
-        $(".table-row").click(function () {
-            window.location = $(this).data("href");
-        });
+    $(document).ready(function() {
+        $('.loading-animation').fadeOut();
     });
 </script>
 @endsection

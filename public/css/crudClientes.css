@@ -1,0 +1,347 @@
+.navbar {
+    width: 100%;
+    background-color: #1197D4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+  }
+   
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+  
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        overflow: hidden;
+    }
+  
+    .main-card {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin: 2rem;
+        padding: 2rem;
+    }
+  
+    .main-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 1rem;
+    }
+  
+    .notification {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        background-color: #fabc0b;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        margin: auto;
+        width: 100%;
+        animation: fade-in 0.5s ease-out forwards;
+    }
+  
+    .notiglow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 10%, rgba(255, 255, 255, 0.4) 90%, rgba(255, 255, 255, 0) 100%);
+        border-radius: 8px;
+        pointer-events: none;
+    }
+  
+    .notiborderglow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid rgba(247, 247, 247, 0.5);
+        border-radius: 8px;
+        pointer-events: none;
+    }
+  
+    .notititle {
+        font-size: 1.5em;
+        color: #fff;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+  
+    .notibody {
+        margin-top: 10px;
+        color: #1197D4;
+    }
+  
+    /* Estilos responsivos */
+    /* Estilos generales */
+  
+    /* Media query para pantallas con un ancho máximo de 500px */
+    @media (max-width: 400px) {
+        .notification {
+            padding: 8px; /* Reducir el padding para conservar el espacio */
+        }
+  
+        .notititle {
+            font-size: 1.5em; /* Reducir el tamaño de la fuente del título */
+        }
+  
+        .notibody {
+            margin-top: 8px; /* Reducir el margen superior */
+            font-size: 0.7em; /* Reducir el tamaño de la fuente del cuerpo */
+        }
+    }
+  
+    /* Form and filters */
+    .filter-form {
+        margin-bottom: 1.5rem;
+    }
+  
+    .filter-field {
+        margin-bottom: 1.5rem;
+    }
+  
+    .form-control {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        padding: 0.5rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+  
+    /* Table */
+    .table-container {
+        overflow-x: auto;
+    }
+  
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+  
+    .table th,
+    .table td {
+        border: 1px solid #dee2e6;
+        padding: 0.75rem;
+        text-align: left;
+    }
+  
+    .table th {
+        background-color: #F5F5F5;
+        font-weight: bold;
+        color: #6c757d;
+    }
+  
+    .table tbody tr:nth-child(odd) {
+        background-color: #F5F5F5;
+    }
+  
+    .table tbody tr:hover {
+        background-color: #E9ECEF;
+    }
+  
+    /* Accent colors */
+    .accent-color-1 {
+        color: #2ECC71;
+    }
+  
+    .accent-color-2 {
+        color: #9B59B6;
+    }
+  
+    /* Responsive */
+    @media (max-width: 768px) {
+        .main-card-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+  
+        .filter-form .filter-field {
+            width: 100%;
+        }
+  
+        .table th,
+        .table td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+  
+        .table th,
+        .table td {
+            padding: 0.5rem;
+        }
+  
+        .table th {
+            font-size: 0.9rem;
+        }
+  
+        .table td {
+            font-size: 0.8rem;
+        }
+    }
+  
+    .borrar_limpiar {
+        display: flex;
+        align-items: center;
+    }
+  
+    .borrar_limpiar .btn {
+        margin-right: 10px;
+        background-color: #e5e1e1;
+    }
+  
+    .borrar_limpiar .btn:link,
+    .borrar_limpiar .btn:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #1285AD; /* Azul claro 2 para el color del texto */
+        padding: 10px 25px;
+        background-color: rgba(169, 169, 169, 0.5); /* Gris opaco */
+        border: 2px solid rgba(19, 96, 131, 0.7); /* Azul opaco para el borde */
+        border-radius: 12px;
+        font-weight: bold;
+        text-align: center;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  
+    .borrar_limpiar .btn:hover,
+    .borrar_limpiar .btn:active {
+        background-color: rgba(169, 169, 169, 0.8); /* Gris opaco más oscuro al pasar el cursor por encima */
+        border: 2px solid rgba(19, 96,131, 1); /* Azul opaco más oscuro para el borde */
+        color: #FFFFFF;
+    }
+  
+    .borrar_limpiar .btn:visited:hover,
+    .borrar_limpiar .btn:link:hover {
+        color: #FFFFFF; /* Blanco para el texto al pasar el cursor por encima */
+    }
+  
+    .borrar_limpiar .btn:visited:active,
+    .borrar_limpiar .btn:link:active {
+        color: #FFFFFF; /* Blanco para el texto al presionar el botón */
+        box-shadow: none;
+    }
+  
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 0;
+    }
+  
+    .pagination .page-item {
+        margin: 0 10px;
+    }
+  
+    .pagination .page-item a {
+        text-decoration: none;
+        color: #1285AD; /* Azul claro 2 para el color del texto */
+        background-color: rgba(169, 169, 169, 0.5); /* Gris opaco */
+        padding: 5px 15px;
+        border-radius: 12px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  
+    .pagination .page-item a:hover {
+        background-color: rgba(169, 169, 169, 0.8); /* Gris opaco más oscuro al pasar el cursor por encima */
+        color: #FFFFFF;
+    }
+  
+    .pagination .page-item.active a {
+        background-color: #1285AD; /* Azul claro 2 para el fondo del enlace activo */
+        color: #FFFFFF; /* Blanco para el texto del enlace activo */
+    }
+  
+    .pagination .page-item.disabled a {
+        color: #AAAAAA; /* Gris claro para el texto del enlace deshabilitado */
+        background-color: rgba(169, 169, 169, 0.5); /* Gris opaco */
+        cursor: not-allowed;
+    }
+  
+    .notification {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #FFFFFF; /* Blanco para el fondo de la notificación */
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        animation: fade-in 0.5s ease-out forwards;
+    }
+  
+    .notification .notititle {
+        font-size: 1.5rem; /* Tamaño de la fuente del título */
+        font-weight: bold;
+        color: #1285AD; /* Azul claro 2 para el color del título */
+    }
+  
+    .notification .notibody {
+        font-size: 1rem; /* Tamaño de la fuente del cuerpo */
+        color: #4A4A4A; /* Gris oscuro para el color del cuerpo */
+        margin-top: 10px;
+    }
+  
+    .notification .closebtn {
+        cursor: pointer;
+        background-color: rgba(169, 169, 169, 0.5); /* Gris opaco */
+        padding: 5px 15px;
+        border-radius: 12px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+        margin-left: 10px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+  
+    .notification .closebtn:hover {
+        background-color: rgba(169, 169, 169, 0.8); /* Gris opaco más oscuro al pasar el cursor por encima */
+        color: #FFFFFF;
+    }
+  
+    .notification .closebtn:visited:hover,
+    .notification .closebtn:link:hover {
+        color: #FFFFFF; /* Blanco para el texto al pasar el cursor por encima */
+    }
+  
+    .notification .closebtn:visited:active,
+    .notification .closebtn:link:active {
+        color: #FFFFFF; /* Blanco para el texto al presionar el botón */
+        box-shadow: none;
+    }
+  
+    .empty-row {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #4A4A4A; /* Gris oscuro para el texto de la fila vacía */
+    }
+  
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }

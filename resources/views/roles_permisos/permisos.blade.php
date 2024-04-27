@@ -4,86 +4,168 @@
 
 @section('content')
 <style>
+    /* Variables */
+    :root {
+        --primary-color: #1285AD; /* Light Blue 2 */
+        --secondary-color: #FABC0B; /* Yellow */
+        --danger-color: #E74C3C;
+        --success-color: #ffc402;
+        --white-color: #ffffff;
+        --dark-color: #333;
+        --gray-color: #f8f9fa;
+    }
+
+    /* Global Styles */
     body {
-        background-color: #f4f6f9; /* Light Grayish Blue */
+        background-color: var(--gray-color);
+        font-family: 'Open Sans', sans-serif;
     }
 
-    .card-header h3 {
-        font-size: 24px;
-        color: #1285AD; /* Light Blue 2 */
-        text-transform: uppercase;
+  .card {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
     }
 
-    .card-header a.btn-primary {
-        background-color: #1285AD; /* Light Blue 2 */
+  .card-header {
+        background-color: var(--primary-color);
         color: #fff;
+        padding: 20px;
+        border-bottom: 1px solid var(--gray-color);
+    }
+
+  .card-header h3 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+  .card-body {
+        padding: 30px;
+    }
+
+  .table {
+        background-color: var(--white-color);
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+  .table th,
+  .table td {
+        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid var(--gray-color);
+    }
+
+  .table th {
+        background-color: var(--primary-color);
+        color: #fff;
+    }
+
+  .table td {
+        font-size: 16px;
+        color: var(--dark-color);
+    }
+
+  .btn {
         font-weight: bold;
         font-size: 16px;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-    .card-header a.btn-primary:hover {
-        background-color: #1197D4; /* Light Blue */
-    }
-
-    .card {
-        background-color: #fff;
-        border: 1px solid #ddd;
+        padding: 10px 20px;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s ease-in-out;
+        transition: all 0.3s ease;
     }
 
-    .card:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  .btn-primary {
+        background-color: var(--secondary-color);
+        border-color: var(--primary-color);
     }
 
-    .table {
-        background-color: #fff;
-        border: 1px solid #ddd;
+  .btn-primary:hover {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
-    .table th,
-    .table td {
-        font-size: 14px;
-        color: #555; /* Dark Gray */
+  .btn-success {
+        background-color: var(--success-color);
+       border-color: var(--success-color);
     }
 
-    .empty-row {
-        text-align: center;
-        font-weight: bold;
-        color: #777;
+  .btn-success:hover {
+        background-color: var(--success-color);
+        border-color: var(--success-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
-    .custom-alert {
-        background-color: #FABC0B; /* Yellow */
-        border-color: #FABC0B; /* Yellow */
-        color: #721c24;
+  .btn-warning {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
     }
 
-    .btn-warning,
-    .btn-danger {
-        color: #fff;
+  .btn-warning:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
-    .btn-danger:hover {
-        background-color: #FF6347; /* Tomato */
+  .btn-danger {
+        background-color: var(--danger-color);
+        border-color: var(--danger-color);
+    }
+
+  .btn-danger:hover {
+        background-color: var(--danger-color);
+        border-color: var(--danger-color);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .loading-animation {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 9999;
+    }
+
+    .loading-animation .spinner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        color: var(--primary-color);
+        animation: rotate 2s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+            transform: translate(-50%, -50%) rotate(360deg);
+        }
     }
 </style>
 
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card animate">
                 <div class="card-header">
-                    <h3 class="card-title">Gestión de Permisos</h3>
+                    <h3 class="card-title">Gestión de </h3>
                     <div class="card-tools">
-                        <a href="{{ route('permisos.create') }}" class="btn btn-primary" data-toggle="modal" data-target="#modalPurple">Agregar Permiso</a>
+                        <a href="{{ route('permisos.create') }}" class="btn btn-primary animate" data-toggle="modal" data-target="#modalPurple">Agregar Rol</a>
                     </div>
                 </div>
                 <div class="card-body">
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show custom-alert" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show custom-alert animate">
                             {{ session('success') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -92,10 +174,13 @@
                     @endif
 
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <div class="loading-animation">
+                            <div class="spinner">⚙️</div>
+                        </div>
+                        <table class="table table-striped animate">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                   
                                     <th>Nombre</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -103,17 +188,17 @@
                             <tbody>
                                 @foreach ($permisos as $permiso)
                                     <tr>
-                                        <td>{{ $permiso->id }}</td>
+                                
                                         <td>{{ $permiso->name }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('permisos.edit', $permiso->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                                <a href="{{ route('permisos.edit', $permiso->id) }}" class="btn btn-warning btn-sm animate">Editar</a>
                                                 
                                                 @can('editar_permiso')
                                                     <form action="{{ route('permisos.destroy', $permiso->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este permiso?')">Eliminar</button>
+                                                        <button type="submit" class="btn btn-danger btn-sm animate" onclick="return confirm('¿Estás seguro de que quieres eliminar este permiso?')">Eliminar</button>
                                                     </form>
                                                 @endcan
                                             </div>
@@ -145,7 +230,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
     $(document).ready(function(){
         $(".custom-alert").delay(5000).slideUp(300, function() {

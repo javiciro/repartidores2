@@ -97,10 +97,13 @@ class ReportesController extends Controller
         $labels = $data->pluck('date');
         $values = $data->pluck('total');
     
-        return [
+       // Agregar el color al arreglo de datos
+        $chartData = [
             'labels' => $labels,
             'values' => $values,
             'color' => $color,
         ];
+    
+        return $chartData;
     }
 }
